@@ -1,0 +1,20 @@
+{
+  "name": "LIRI",
+  "version": "1.0.0",
+  "description": "This is the repository for the homework for Unit 10: Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasxcox731/LIRI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomasxcox731/LIRI/issues"
+  },
+  "homepage": "https://github.com/thomasxcox731/LIRI#readme"
+}
