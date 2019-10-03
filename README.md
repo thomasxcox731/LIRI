@@ -17,4 +17,4 @@ The user inputs a command into the terminal, consisting of "Node liri.js" + one 
 
     4. "Do-what-it-says": Commences the 'do-what-it-says' function which reads the file 'random.txt' and initates the command within, which in this case is 'spotify-this-song,"I Want it That Way"', which will run the 'spotify-this-song' function to obtain and present information on the song, "I Want it That Way" by The Backstreet Boys.  
 
-The following link will present a video demo of the application: 
+The following link will present a video demo of the application: https://www.screencast.com/t/MKfIu6bgp 
