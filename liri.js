@@ -4,6 +4,7 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var axios = require('axios');
 var bandsintown = require('axios');
+var moment = require('moment');
 var operator = process.argv[2];
 var input = process.argv[3];
 var fs = require('fs');
@@ -25,29 +26,15 @@ operators();
 function concertThis() {
     bandsintown.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp").then(
         function (response) {
-            // console.log(response.data[0].venue.name);
             var concert = response.data[0];
             console.log("Venue: " + concert.venue.name + "\n",
                 "Location: " + concert.venue.city + "," + concert.venue.region + "\n",
-                "Event Date: " + concert.datetime + "\n",
+                "Event Date: " + moment(concert.datetime).format("MM DD YYYY") + "\n",
             );
         }
     );
 };
 
-// function ace(song) {
-//     spotify
-//         .search({ type: 'track', query: song})
-//         .then(function (response) {
-//             console.log("Artist: " + response.tracks.items[5].artists[0].name);
-//             console.log("Title: " + response.tracks.items[5].name);
-//             console.log("Album: " + response.tracks.items[5].album.name);
-//             console.log("Preview: " + response.tracks.items[5].preview_url);
-//         })
-//         .catch(function (err) {
-//             console.log(err);
-//         });
-// };
 //Using the Spotify API to retrieve Song Data//
 function spotifyThis(song) {
     if (!song){
@@ -87,7 +74,7 @@ function movieThis() {
     );
 };
 
-//Using fs to do this other thing//
+//Using fs to "Do what it says"//
 function doThis() {
     fs.readFile("random.txt", "utf-8", function (error, data) {
 
@@ -95,13 +82,10 @@ function doThis() {
         if (error) {
             return console.log(error);
         }
-
         // We will then print the contents of data
         console.log(data);
-
         // Then split it by commas (to make it more readable)
         var dataArr = data.split(",");
-
         // We will then re-display the content as an array for later use.
         // console.log(dataArr);
         process.argv[2]=dataArr[0];
@@ -109,4 +93,4 @@ function doThis() {
         spotifyThis(input);
     });
 
-}
+};
