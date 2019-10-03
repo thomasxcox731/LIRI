@@ -26,7 +26,7 @@ operators();
 function concertThis() {
     bandsintown.get("https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp").then(
         function (response) {
-            // console.log(response.data[0].venue);
+            // console.log(response.data[0].venue.name);
             var concert = response.data[0];
             console.log("Venue: " + concert.venue.name + "\n",
                 "Location: " + concert.venue.city + "," + concert.venue.region + "\n",
@@ -36,18 +36,15 @@ function concertThis() {
     );
 };
 
-//Using the OMDB API via Axios to retrieve Movie Data//
+//Using the Spotify API to retrieve Song Data//
 function spotifyThis() {
-    Spotify
-        .search({ type: 'track', query: input }, function (err, data) {
-            if (err) {
-                return console.log('Error occurred: ' + err);
-            }
-            console.log(" Artist: " + data.artist + "\n",
-                "Name: " + data.name + "\n",
-                "Preview: " + data.preview + "\n",
-                "Album: " + data.album + "\n",
-            );
+    spotify
+        .search({ type: 'track', query: "Thriller"})
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (err) {
+            console.log(err);
         });
 };
 
