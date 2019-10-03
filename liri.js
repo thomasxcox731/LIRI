@@ -15,10 +15,9 @@ function operators() {
         concertThis();
     } else if (operator === "spotify-this-song") {
         spotifyThis(input);
+    } else if (operator === "do-what-it-says") {
+        doThis();
     }
-    // } else if (operator === "do-what-it-says"){
-    //     var 
-    // }
 };
 operators();
 
@@ -36,14 +35,26 @@ function concertThis() {
     );
 };
 
+// function ace(song) {
+//     spotify
+//         .search({ type: 'track', query: song})
+//         .then(function (response) {
+//             console.log("Artist: " + response.tracks.items[5].artists[0].name);
+//             console.log("Title: " + response.tracks.items[5].name);
+//             console.log("Album: " + response.tracks.items[5].album.name);
+//             console.log("Preview: " + response.tracks.items[5].preview_url);
+//         })
+//         .catch(function (err) {
+//             console.log(err);
+//         });
+// };
 //Using the Spotify API to retrieve Song Data//
 function spotifyThis(song) {
     if (!song){
-        song = "The Sign";
-        console.log(song);
+        song = "Ace of Base";
     }
     spotify
-        .search({ type: 'track', query: song})
+        .search({ type: 'track', query: song })
         .then(function (response) {
             console.log("Artist: " + response.tracks.items[0].artists[0].name);
             console.log("Title: " + response.tracks.items[0].name);
@@ -57,7 +68,7 @@ function spotifyThis(song) {
 
 //Using the OMDB API via Axios to retrieve Movie Data//
 function movieThis() {
-    if (!input){
+    if (!input) {
         input = "Mr. Nobody"
     };
     axios.get("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy").then(
@@ -75,3 +86,27 @@ function movieThis() {
         }
     );
 };
+
+//Using fs to do this other thing//
+function doThis() {
+    fs.readFile("random.txt", "utf-8", function (error, data) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+            return console.log(error);
+        }
+
+        // We will then print the contents of data
+        console.log(data);
+
+        // Then split it by commas (to make it more readable)
+        var dataArr = data.split(",");
+
+        // We will then re-display the content as an array for later use.
+        // console.log(dataArr);
+        process.argv[2]=dataArr[0];
+        input = dataArr[1];
+        spotifyThis(input);
+    });
+
+}
